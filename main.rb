@@ -1,41 +1,44 @@
-ALPHA = "abcdefghijklmnopqrstuvwxyz".split("")
+# frozen_string_literal: true
 
+require 'bundler/setup'
+
+# gems
+require 'rubocop'
+
+# CONSTANTS
+ALPHA = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
 # determines if the new letter should be capitalized or not
-def capitalization(oldLetter, newLetter)
-  if oldLetter == oldLetter.upcase
-    newLetter.upcase
+def capitalization(old_letter, new_letter)
+  if old_letter == old_letter.upcase
+    new_letter.upcase
   else
-    newLetter
+    new_letter
   end
 end
 
-
 # works as an encryption function using users message and shift factor
-def encrypt(str, shiftFactor)
-  str.split("").reduce("") { |newStr, letter|
+def encrypt(str, shift_factor)
+  str.split('').reduce('') do |new_str, letter|
     if ALPHA.include?(letter.downcase)
-      newIndex = ALPHA.index(letter.downcase) + shiftFactor
-      if newIndex > 25
-        newIndex -= 26
-        
-      end
-      newStr += capitalization(letter, ALPHA[newIndex])
+      new_index = ALPHA.index(letter.downcase) + shift_factor
+      new_index -= 26 if new_index > 25
+      new_str + capitalization(letter, ALPHA[new_index])
     else
-      newStr += letter
+      new_str + letter
     end
-  }
+  end
 end
 
 # gets message (and shift factor) from user for encryption
-def getMessage()
-  puts "Enter in a message for encryption"
+def display_message
+  puts 'Enter in a message for encryption'
   string = gets.chomp
-  puts "Enter a shift factor"
+  puts 'Enter a shift factor'
   shift = gets.to_i
-  puts "\n\n***EnCrYpTeD mEsSaGe***"
+  puts '\n\n***EnCrYpTeD mEsSaGe***'
   puts encrypt(string, shift)
 end
 
 # main code
-getMessage()
+display_message
