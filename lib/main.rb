@@ -10,12 +10,6 @@ ALPHA = 'abcdefghijklmnopqrstuvwxyz'.split('')
 def capitalization(old_letter, new_letter)
   old_letter == old_letter.upcase ? new_letter.upcase : new_letter.downcase
 end
-#   if old_letter == old_letter.upcase
-#     new_letter.upcase
-#   else
-#     new_letter
-#   end
-# end
 
 # works as an encryption function using users message and shift factor
 def encrypt(str, shift_factor)
